@@ -1,0 +1,274 @@
+[gd_scene load_steps=11 format=3 uid="uid://bq56i72d0abqu"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_k4aec"]
+[ext_resource type="Texture2D" uid="uid://bkrbo1o0mc65u" path="res://images.png" id="2_5t2p7"]
+[ext_resource type="Script" path="res://Walls.gd" id="3_qbti8"]
+[ext_resource type="Texture2D" uid="uid://ciml0wcv12q3y" path="res://spotlight.jpg" id="3_tjkua"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y6vkk"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gu12h"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sl1oo"]
+size = Vector2(26, 256)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5mo2b"]
+polygon = PackedVector2Array(112, -320, 112, -16, 144, -16, 144, -248, 144, -320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvdxp"]
+size = Vector2(32, 304)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7gfv2"]
+size = Vector2(20, 96)
+
+[node name="Worldnode" type="Node2D"]
+position = Vector2(8, 0)
+
+[node name="PlayerNode" type="Node2D" parent="."]
+position = Vector2(-8, 0)
+
+[node name="Player" type="CharacterBody2D" parent="PlayerNode"]
+script = ExtResource("1_k4aec")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerNode/Player"]
+shape = SubResource("RectangleShape2D_y6vkk")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerNode/Player"]
+texture = ExtResource("2_5t2p7")
+
+[node name="Detect" type="Area2D" parent="PlayerNode/Player"]
+position = Vector2(576, 284)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerNode/Player/Detect"]
+position = Vector2(-576, -284)
+scale = Vector2(0.6, 0.6)
+shape = SubResource("RectangleShape2D_gu12h")
+
+[node name="PointLight2D" type="PointLight2D" parent="PlayerNode/Player"]
+shadow_enabled = true
+texture = ExtResource("3_tjkua")
+
+[node name="Resetter" type="Area2D" parent="PlayerNode"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerNode/Resetter"]
+position = Vector2(-261, 0)
+shape = SubResource("RectangleShape2D_sl1oo")
+
+[node name="Wallnode" type="Node2D" parent="."]
+position = Vector2(136, 0)
+metadata/_edit_group_ = true
+
+[node name="Walls" type="StaticBody2D" parent="Wallnode"]
+script = ExtResource("3_qbti8")
+
+[node name="UpperWallSprite2D" type="Sprite2D" parent="Wallnode/Walls"]
+position = Vector2(128, -200)
+scale = Vector2(2, 19)
+texture = ExtResource("2_5t2p7")
+
+[node name="UpperWallLightOccluder2D" type="LightOccluder2D" parent="Wallnode/Walls"]
+position = Vector2(0, -32)
+occluder = SubResource("OccluderPolygon2D_5mo2b")
+
+[node name="UpperWallColl2" type="CollisionShape2D" parent="Wallnode/Walls"]
+position = Vector2(128, -200)
+shape = SubResource("RectangleShape2D_jvdxp")
+
+[node name="UpperWallSprite2D2" type="Sprite2D" parent="Wallnode/Walls"]
+position = Vector2(128, 200)
+scale = Vector2(2, 19)
+texture = ExtResource("2_5t2p7")
+
+[node name="UpperWallLightOccluder2D2" type="LightOccluder2D" parent="Wallnode/Walls"]
+position = Vector2(0, 368)
+occluder = SubResource("OccluderPolygon2D_5mo2b")
+
+[node name="UpperWallColl3" type="CollisionShape2D" parent="Wallnode/Walls"]
+position = Vector2(128, 200)
+shape = SubResource("RectangleShape2D_jvdxp")
+
+[node name="Pointarea" type="Area2D" parent="Wallnode/Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wallnode/Walls/Pointarea"]
+position = Vector2(128, 0)
+shape = SubResource("RectangleShape2D_7gfv2")
+
+[node name="Wallnode3" type="Node2D" parent="."]
+position = Vector2(376, -40)
+metadata/_edit_group_ = true
+
+[node name="Walls" type="StaticBody2D" parent="Wallnode3"]
+script = ExtResource("3_qbti8")
+
+[node name="UpperWallSprite2D" type="Sprite2D" parent="Wallnode3/Walls"]
+position = Vector2(128, -200)
+scale = Vector2(2, 19)
+texture = ExtResource("2_5t2p7")
+
+[node name="UpperWallLightOccluder2D" type="LightOccluder2D" parent="Wallnode3/Walls"]
+position = Vector2(0, -32)
+occluder = SubResource("OccluderPolygon2D_5mo2b")
+
+[node name="UpperWallColl2" type="CollisionShape2D" parent="Wallnode3/Walls"]
+position = Vector2(128, -200)
+shape = SubResource("RectangleShape2D_jvdxp")
+
+[node name="UpperWallSprite2D2" type="Sprite2D" parent="Wallnode3/Walls"]
+position = Vector2(128, 200)
+scale = Vector2(2, 19)
+texture = ExtResource("2_5t2p7")
+
+[node name="UpperWallLightOccluder2D2" type="LightOccluder2D" parent="Wallnode3/Walls"]
+position = Vector2(0, 368)
+occluder = SubResource("OccluderPolygon2D_5mo2b")
+
+[node name="UpperWallColl3" type="CollisionShape2D" parent="Wallnode3/Walls"]
+position = Vector2(128, 200)
+shape = SubResource("RectangleShape2D_jvdxp")
+
+[node name="Pointarea" type="Area2D" parent="Wallnode3/Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wallnode3/Walls/Pointarea"]
+position = Vector2(128, 0)
+shape = SubResource("RectangleShape2D_7gfv2")
+
+[node name="Wallnode4" type="Node2D" parent="."]
+position = Vector2(504, -56)
+metadata/_edit_group_ = true
+
+[node name="Walls" type="StaticBody2D" parent="Wallnode4"]
+script = ExtResource("3_qbti8")
+
+[node name="UpperWallSprite2D" type="Sprite2D" parent="Wallnode4/Walls"]
+position = Vector2(128, -200)
+scale = Vector2(2, 19)
+texture = ExtResource("2_5t2p7")
+
+[node name="UpperWallLightOccluder2D" type="LightOccluder2D" parent="Wallnode4/Walls"]
+position = Vector2(0, -32)
+occluder = SubResource("OccluderPolygon2D_5mo2b")
+
+[node name="UpperWallColl2" type="CollisionShape2D" parent="Wallnode4/Walls"]
+position = Vector2(128, -200)
+shape = SubResource("RectangleShape2D_jvdxp")
+
+[node name="UpperWallSprite2D2" type="Sprite2D" parent="Wallnode4/Walls"]
+position = Vector2(128, 200)
+scale = Vector2(2, 19)
+texture = ExtResource("2_5t2p7")
+
+[node name="UpperWallLightOccluder2D2" type="LightOccluder2D" parent="Wallnode4/Walls"]
+position = Vector2(0, 368)
+occluder = SubResource("OccluderPolygon2D_5mo2b")
+
+[node name="UpperWallColl3" type="CollisionShape2D" parent="Wallnode4/Walls"]
+position = Vector2(128, 200)
+shape = SubResource("RectangleShape2D_jvdxp")
+
+[node name="Pointarea" type="Area2D" parent="Wallnode4/Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wallnode4/Walls/Pointarea"]
+position = Vector2(128, 0)
+shape = SubResource("RectangleShape2D_7gfv2")
+
+[node name="Wallnode5" type="Node2D" parent="."]
+position = Vector2(624, -32)
+metadata/_edit_group_ = true
+
+[node name="Walls" type="StaticBody2D" parent="Wallnode5"]
+script = ExtResource("3_qbti8")
+
+[node name="UpperWallSprite2D" type="Sprite2D" parent="Wallnode5/Walls"]
+position = Vector2(128, -200)
+scale = Vector2(2, 19)
+texture = ExtResource("2_5t2p7")
+
+[node name="UpperWallLightOccluder2D" type="LightOccluder2D" parent="Wallnode5/Walls"]
+position = Vector2(0, -32)
+occluder = SubResource("OccluderPolygon2D_5mo2b")
+
+[node name="UpperWallColl2" type="CollisionShape2D" parent="Wallnode5/Walls"]
+position = Vector2(128, -200)
+shape = SubResource("RectangleShape2D_jvdxp")
+
+[node name="UpperWallSprite2D2" type="Sprite2D" parent="Wallnode5/Walls"]
+position = Vector2(128, 200)
+scale = Vector2(2, 19)
+texture = ExtResource("2_5t2p7")
+
+[node name="UpperWallLightOccluder2D2" type="LightOccluder2D" parent="Wallnode5/Walls"]
+position = Vector2(0, 368)
+occluder = SubResource("OccluderPolygon2D_5mo2b")
+
+[node name="UpperWallColl3" type="CollisionShape2D" parent="Wallnode5/Walls"]
+position = Vector2(128, 200)
+shape = SubResource("RectangleShape2D_jvdxp")
+
+[node name="Pointarea" type="Area2D" parent="Wallnode5/Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wallnode5/Walls/Pointarea"]
+position = Vector2(128, 0)
+shape = SubResource("RectangleShape2D_7gfv2")
+
+[node name="Wallnode2" type="Node2D" parent="."]
+position = Vector2(256, 0)
+metadata/_edit_group_ = true
+
+[node name="Walls" type="StaticBody2D" parent="Wallnode2"]
+script = ExtResource("3_qbti8")
+
+[node name="UpperWallSprite2D" type="Sprite2D" parent="Wallnode2/Walls"]
+position = Vector2(128, -200)
+scale = Vector2(2, 19)
+texture = ExtResource("2_5t2p7")
+
+[node name="UpperWallLightOccluder2D" type="LightOccluder2D" parent="Wallnode2/Walls"]
+position = Vector2(0, -32)
+occluder = SubResource("OccluderPolygon2D_5mo2b")
+
+[node name="UpperWallColl2" type="CollisionShape2D" parent="Wallnode2/Walls"]
+position = Vector2(128, -200)
+shape = SubResource("RectangleShape2D_jvdxp")
+
+[node name="UpperWallSprite2D2" type="Sprite2D" parent="Wallnode2/Walls"]
+position = Vector2(128, 200)
+scale = Vector2(2, 19)
+texture = ExtResource("2_5t2p7")
+
+[node name="UpperWallLightOccluder2D2" type="LightOccluder2D" parent="Wallnode2/Walls"]
+position = Vector2(0, 368)
+occluder = SubResource("OccluderPolygon2D_5mo2b")
+
+[node name="UpperWallColl3" type="CollisionShape2D" parent="Wallnode2/Walls"]
+position = Vector2(128, 200)
+shape = SubResource("RectangleShape2D_jvdxp")
+
+[node name="Pointarea" type="Area2D" parent="Wallnode2/Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wallnode2/Walls/Pointarea"]
+position = Vector2(128, 0)
+shape = SubResource("RectangleShape2D_7gfv2")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1, 0.7)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = -32.0
+offset_top = -120.0
+offset_right = 32.0
+offset_bottom = -72.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0.0627451, 0.286275, 1)
+show_behind_parent = true
+scale = Vector2(200, 200)
+texture = ExtResource("2_5t2p7")
+
+[connection signal="area_entered" from="PlayerNode/Player/Detect" to="PlayerNode/Player" method="_on_detect_area_entered"]
+[connection signal="body_entered" from="PlayerNode/Player/Detect" to="PlayerNode/Player" method="_on_detect_body_entered"]
+[connection signal="body_entered" from="PlayerNode/Resetter" to="PlayerNode/Player" method="_on_resetter_body_entered"]
