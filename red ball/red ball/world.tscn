@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpwdb0idcw8ew"]
+
+[ext_resource type="PackedScene" uid="uid://bxvmdxqigcv75" path="res://player/player1.tscn" id="1_2h1id"]
+[ext_resource type="Script" path="res://bg.gd" id="1_nlu6t"]
+[ext_resource type="Texture2D" uid="uid://bfy3s3vk2wihy" path="res://Sunny-land-files/Graphical Assets/environment/Background/back.png" id="2_xw6tp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q5swp"]
+size = Vector2(952.5, 132.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_37g1b"]
+size = Vector2(120.5, 392)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61s2u"]
+size = Vector2(120.5, 392)
+
+[node name="world" type="Node2D"]
+
+[node name="BG" type="ParallaxBackground" parent="."]
+script = ExtResource("1_nlu6t")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="BG"]
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Back" type="Sprite2D" parent="BG/ParallaxLayer"]
+position = Vector2(576, 326)
+scale = Vector2(3, 2.71667)
+texture = ExtResource("2_xw6tp")
+
+[node name="player" parent="." instance=ExtResource("1_2h1id")]
+position = Vector2(144, 80)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Floor" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(479.5, 323.5)
+shape = SubResource("RectangleShape2D_q5swp")
+
+[node name="Wall" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(59.75, 196)
+shape = SubResource("RectangleShape2D_37g1b")
+
+[node name="wall2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(896, 192)
+shape = SubResource("RectangleShape2D_61s2u")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 120.0
+offset_top = 256.0
+offset_right = 832.0
+offset_bottom = 344.0
